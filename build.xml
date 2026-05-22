@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BancoDiarioFacade" default="default" basedir=".">
+    <description>Builds, tests, and runs the project BancoDiarioFacade.</description>
+    
+    <property name="libs.CopyLibs.classpath" value="C:\Program Files\Apache NetBeans\java\ant\extra\org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+
+    <property name="platforms.JDK_25.home" value="C:\Program Files\Apache NetBeans\jdk"/>
+
+    <target name="-init-user">
+        <echo message="Removiendo parametro obsoleto de build-impl.xml de forma nativa..."/>
+        <replaceregexp file="nbproject/build-impl.xml"
+                       match="-Xbootclasspath/p:.*&quot;"
+                       replace="&quot;"
+                       byline="true"/>
+    </target>
+
+    <target name="undeploy-clean" description="Salta el error de servidor">
+        <echo message="Saltando la limpieza del servidor para evitar el NullPointerException..."/>
+    </target>
+
+    <import file="nbproject/build-impl.xml"/>
+</project>
