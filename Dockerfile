@@ -1,4 +1,6 @@
-FROM tomcat:10.1-jdk21
+FROM eclipse-temurin:25-jdk AS builder
+
+FROM tomcat:11.0-jdk21
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
