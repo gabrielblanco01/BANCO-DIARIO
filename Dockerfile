@@ -1,10 +1,17 @@
-FROM eclipse-temurin:25-jdk AS builder
+FROM eclipse-temurin:21-jdk
 
-FROM tomcat:11.0-jdk21
+WORKDIR /app
+COPY . .
+
+RUN apt-get update && apt-get install -y ant
+
+RUN ant -f build.xml
+
+FROM tomcat:10.1-jdk21
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY dist/BancoDiarioFacade.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=0 /app/dist/BancoDiarioFacade.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 
